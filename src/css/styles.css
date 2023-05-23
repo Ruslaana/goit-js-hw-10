@@ -12,9 +12,27 @@ body {
   line-height: 1.5;
 }
 
+h1 {
+  margin-bottom: 20px;
+}
+
+input[type='text'] {
+  padding: 5px;
+  font-size: 16px;
+}
+
 #search-box {
   font: inherit;
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+}
+
+button {
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+#country-list {
+  margin-top: 20px;
 }
