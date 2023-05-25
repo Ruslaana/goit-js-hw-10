@@ -12,4 +12,4 @@ function fetchCountriesData(name) {
   });
 }
 
-export default fetchCountriesData;
+export { fetchCountriesData };
