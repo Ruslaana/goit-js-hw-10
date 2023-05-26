@@ -30,7 +30,6 @@ function displayCountries(countries) {
     flagImage.alt = `${name} Flag`;
     countryName.textContent = name.official;
 
-    console.log(languages.map(lang => lang.name).join(', '));
     countryDetails.innerHTML = `
       <strong>Capital:</strong> ${capital}<br>
       <strong>Population:</strong> ${population}<br>
