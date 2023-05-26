@@ -20,7 +20,7 @@ function displayCountries(countries) {
 
   countries.forEach(country => {
     const { name, capital, population, flags, languages } = country;
-
+    console.log(languages);
     const listItem = document.createElement('li');
     const flagImage = document.createElement('img');
     const countryName = document.createElement('h2');
@@ -29,10 +29,12 @@ function displayCountries(countries) {
     flagImage.src = flags.svg;
     flagImage.alt = `${name} Flag`;
     countryName.textContent = name.official;
+
+    console.log(languages.map(lang => lang.name).join(', '));
     countryDetails.innerHTML = `
       <strong>Capital:</strong> ${capital}<br>
       <strong>Population:</strong> ${population}<br>
-      <strong>Languages:</strong> ${languages.map(lang => lang.name).join(', ')}
+      <strong>Languages:</strong> ${Object.values(languages)}
     `;
 
     listItem.appendChild(flagImage);
