@@ -1,4 +1,4 @@
-const URL_API = 'https://restcountries.com/v3.1/name';
+const URL_API = 'https://restcountries.com/#api-endpoints-v3-name';
 
 function fetchCountriesData(name) {
   return fetch(

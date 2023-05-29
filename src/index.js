@@ -19,29 +19,46 @@ function displayCountries(countries) {
   }
 
   countries.forEach(country => {
-    const { name, capital, population, flags, languages } = country;
-    console.log(languages);
+    const { name, flags } = country;
     const listItem = document.createElement('li');
     const flagImage = document.createElement('img');
     const countryName = document.createElement('h2');
-    const countryDetails = document.createElement('p');
 
     flagImage.src = flags.svg;
     flagImage.alt = `${name} Flag`;
     countryName.textContent = name.official;
 
-    countryDetails.innerHTML = `
-      <strong>Capital:</strong> ${capital}<br>
-      <strong>Population:</strong> ${population}<br>
-      <strong>Languages:</strong> ${Object.values(languages)}
-    `;
-
     listItem.appendChild(flagImage);
     listItem.appendChild(countryName);
-    listItem.appendChild(countryDetails);
 
     countryList.appendChild(listItem);
   });
+}
+
+function displayCountryDetails(country) {
+  countryList.innerHTML = '';
+
+  const { name, capital, population, flags, languages } = country;
+  const listItem = document.createElement('li');
+  const flagImage = document.createElement('img');
+  const countryName = document.createElement('h2');
+  const countryDetails = document.createElement('p');
+
+  flagImage.src = flags.svg;
+  flagImage.alt = `${name} Flag`;
+  countryName.textContent = name.official;
+
+  countryDetails.innerHTML = `
+    <strong>Capital:</strong> ${capital}<br>
+    <strong>Population:</strong> ${population}<br>
+    <strong>Languages:</strong> ${Object.values(languages)}
+  `;
+
+  listItem.appendChild(flagImage);
+  listItem.appendChild(countryName);
+  listItem.appendChild(countryDetails);
+
+  countryList.appendChild(listItem);
 }
 
 function showCountryNotFoundError() {
@@ -54,7 +71,11 @@ const handleSearch = debounce(() => {
   if (searchTerm !== '') {
     fetchCountriesData(searchTerm)
       .then(countries => {
-        displayCountries(countries);
+        if (countries.length === 1) {
+          displayCountryDetails(countries[0]);
+        } else {
+          displayCountries(countries);
+        }
       })
       .catch(error => {
         if (error.message === 'Country not found') {
