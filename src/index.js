@@ -25,8 +25,8 @@ function displayCountries(countries) {
     const countryName = document.createElement('h2');
 
     flagImage.src = flags.svg;
-    flagImage.alt = `${name} Flag`;
-    countryName.textContent = name.official;
+    flagImage.alt = `${name.common} Flag`;
+    countryName.textContent = name.common;
 
     listItem.appendChild(flagImage);
     listItem.appendChild(countryName);
@@ -45,13 +45,13 @@ function displayCountryDetails(country) {
   const countryDetails = document.createElement('p');
 
   flagImage.src = flags.svg;
-  flagImage.alt = `${name} Flag`;
-  countryName.textContent = name.official;
+  flagImage.alt = `${name.common} Flag`;
+  countryName.textContent = name.common;
 
   countryDetails.innerHTML = `
     <strong>Capital:</strong> ${capital}<br>
     <strong>Population:</strong> ${population}<br>
-    <strong>Languages:</strong> ${Object.values(languages)}
+    <strong>Languages:</strong> ${Object.values(languages).join(', ')}
   `;
 
   listItem.appendChild(flagImage);
@@ -87,8 +87,6 @@ const handleSearch = debounce(() => {
   } else {
     countryList.innerHTML = '';
   }
-});
+}, 300);
 
-const debounce_delay = 300;
-
-countryInput.addEventListener('input', debounce(handleSearch, debounce_delay));
+countryInput.addEventListener('input', handleSearch);
