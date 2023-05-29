@@ -35,4 +35,9 @@ button {
 
 #country-list {
   margin-top: 20px;
+  text-decoration: none;
+}
+
+img {
+  max-width: 150px;
 }
